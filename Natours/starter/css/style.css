@@ -44,7 +44,7 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 
-.logo-box {
+.header__logo-box {
     position: absolute;
     /* top: 40px;
     left: 40px;*/
@@ -59,7 +59,7 @@ body {
 }
 
 /* we use this css styling to center the positioning of our div */
-.text-box {
+.header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -77,7 +77,7 @@ body {
     margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
     display: block;
     /* font-size: 60px; */
     font-size: 6rem;
@@ -104,7 +104,7 @@ body {
     }
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
     display: block;
     /* font-size: 20px; */
     font-size: 2rem;
@@ -171,7 +171,7 @@ body {
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
 }
 
-.btn-white {
+.btn--white {
     background-color: #fff;
     color: #777;
 }
@@ -202,7 +202,7 @@ body {
     opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
     animation: moveInBottom .5s ease-out .75s;
     animation-fill-mode: backwards;
 }
