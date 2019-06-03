@@ -8,11 +8,14 @@ COLORS:
 
 
 */
-$color-white: #fff;
 $color-primary: #55c57a;
 $color-primary-light: #7ed56f;
 $color-primary-dark: #28b485;
+
+
+$color-white: #fff;
 $color-grey-dark: #777;
+$color-black: #000;
 
 
 
@@ -45,37 +48,63 @@ body {
 .header {
     /* What this does is the height should be 95% of the viewport-height */
     height: 95vh;
-    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg);
     background-size: cover;
     background-position: top;
     position: relative;
+
+
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+
+    // this nesting(&) operator basically just appends the classname. It's the same as: .header__logo-box
+    &__logo-box {
+        position: absolute;
+
+        /* top: 40px;
+        left: 40px;*/
+        top: 4rem;
+        left: 4rem;
+    }
+    &__logo {
+        /* height: 35px; */
+        height: 3.5rem;
+    }
+    /* we use this css styling to center the positioning of our div */
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    
+        text-align: center;
+    }
 }
 
-.header__logo-box {
-    position: absolute;
-    /* top: 40px;
-    left: 40px;*/
+// .header__logo-box {
+//     position: absolute;
+//     /* top: 40px;
+//     left: 40px;*/
 
-    top: 4rem;
-    left: 4rem;
-}
+//     top: 4rem;
+//     left: 4rem;
+// }
 
-.logo {
-    /* height: 35px; */
-    height: 3.5rem;
-}
+// .header__logo {
+//     /* height: 35px; */
+//     height: 3.5rem;
+// }
 
-/* we use this css styling to center the positioning of our div */
-.header__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+// /* we use this css styling to center the positioning of our div */
+// .header__text-box {
+//     position: absolute;
+//     top: 40%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
 
-    text-align: center;
-}
+//     text-align: center;
+// }
 
 .heading-primary {
     color: $color-white;
@@ -84,18 +113,52 @@ body {
     /* This removes the shaky portion of animation when we use moveInLeft and moveInRight */
     backface-visibility: hidden;
     margin-bottom: 6rem;
+
+    &--main {
+        display: block;
+        /* font-size: 60px; */
+        font-size: 6rem;
+        font-weight: 400;
+        /* letter-spacing: 35px; */
+        letter-spacing: 3.5rem;
+    
+        animation: moveInLeft 1s ease-out;
+    }
+    
+    &--sub {
+        display: block;
+        /* font-size: 20px; */
+        font-size: 2rem;
+        font-weight: 700;
+        /* letter-spacing: 17.4px; */
+        letter-spacing: 1.75rem;
+    
+        animation: moveInRight 1s ease-out;
+    }
+    
 }
 
-.heading-primary--main {
-    display: block;
-    /* font-size: 60px; */
-    font-size: 6rem;
-    font-weight: 400;
-    /* letter-spacing: 35px; */
-    letter-spacing: 3.5rem;
+// .heading-primary--main {
+//     display: block;
+//     /* font-size: 60px; */
+//     font-size: 6rem;
+//     font-weight: 400;
+//     /* letter-spacing: 35px; */
+//     letter-spacing: 3.5rem;
 
-    animation: moveInLeft 1s ease-out;
-}
+//     animation: moveInLeft 1s ease-out;
+// }
+
+// .heading-primary--sub {
+//     display: block;
+//     /* font-size: 20px; */
+//     font-size: 2rem;
+//     font-weight: 700;
+//     /* letter-spacing: 17.4px; */
+//     letter-spacing: 1.75rem;
+
+//     animation: moveInRight 1s ease-out;
+// }
 
 @keyframes moveInLeft {
     0% {
@@ -111,17 +174,6 @@ body {
         opacity: 1;
         transform: translateX(0);
     }
-}
-
-.heading-primary--sub {
-    display: block;
-    /* font-size: 20px; */
-    font-size: 2rem;
-    font-weight: 700;
-    /* letter-spacing: 17.4px; */
-    letter-spacing: 1.75rem;
-
-    animation: moveInRight 1s ease-out;
 }
 
 @keyframes moveInRight {
@@ -153,65 +205,136 @@ body {
 }
 
 
-.btn:link, .btn:visited {
-    text-decoration: none;
-    text-transform: uppercase;
-    /* padding: 15px 40px; */
-    padding: 1.5rem 4rem;
-    display: inline-block;
+.btn {
 
-    border-radius: 10rem;
+    &:link, &:visited {
+        text-decoration: none;
+        text-transform: uppercase;
+        /* padding: 15px 40px; */
+        padding: 1.5rem 4rem;
+        display: inline-block;
+    
+        border-radius: 10rem;
+    
+        /* Transition should be in initial state before animation happens on :hover or any pseudo classes */
+        transition: all .2s;
+    
+        font-size: 1.6rem;
+    
+        position: relative;
+    }
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
 
-    /* Transition should be in initial state before animation happens on :hover or any pseudo classes */
-    transition: all .2s;
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    /* Active triggers when button is pressed by user */
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
 
-    font-size: 1.6rem;
+        &::after {
+            background-color: $color-white;
+        }    
+    }
+    
+    /* we need the ::after pseudo class to replicate cool effects */
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+    
+        /* We to put this the after pseudo css style to go behind. For absolute positioning, there has to be a reference point where the element should sit. So the parent element where this pseudo-element sits should have a `relative` positioning. */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* This puts it behind the button */
+        z-index: -1;
+    
+        transition: all 0.4s;
+    }
+    
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards;
+    }
 
-    position: relative;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
-}
-/* Active triggers when button is pressed by user */
-.btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
-}
 
-.btn--white {
-    background-color: $color-white;
-    color: #777;
-}
 
-/* we need the ::after pseudo class to replicate cool effects */
-.btn::after {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius: 10rem;
+// .btn:link, .btn:visited {
+//     text-decoration: none;
+//     text-transform: uppercase;
+//     /* padding: 15px 40px; */
+//     padding: 1.5rem 4rem;
+//     display: inline-block;
 
-    /* We to put this the after pseudo css style to go behind. For absolute positioning, there has to be a reference point where the element should sit. So the parent element where this pseudo-element sits should have a `relative` positioning. */
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* This puts it behind the button */
-    z-index: -1;
+//     border-radius: 10rem;
 
-    transition: all 0.4s;
-}
-.btn--white::after {
-    background-color: $color-white;
-}
+//     /* Transition should be in initial state before animation happens on :hover or any pseudo classes */
+//     transition: all .2s;
 
-.btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-}
+//     font-size: 1.6rem;
 
-.btn--animated {
-    animation: moveInBottom .5s ease-out .75s;
-    animation-fill-mode: backwards;
-}
+//     position: relative;
+// }
+
+// .btn:hover {
+//     transform: translateY(-3px);
+//     box-shadow: 0 1rem 2rem rgba($color-black,.2);
+// }
+// /* Active triggers when button is pressed by user */
+// .btn:active {
+//     transform: translateY(-1px);
+//     box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+// }
+
+// .btn--white {
+//     background-color: $color-white;
+//     color: $color-grey-dark;
+// }
+
+// /* we need the ::after pseudo class to replicate cool effects */
+// .btn::after {
+//     content: "";
+//     display: inline-block;
+//     height: 100%;
+//     width: 100%;
+//     border-radius: 10rem;
+
+//     /* We to put this the after pseudo css style to go behind. For absolute positioning, there has to be a reference point where the element should sit. So the parent element where this pseudo-element sits should have a `relative` positioning. */
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     /* This puts it behind the button */
+//     z-index: -1;
+
+//     transition: all 0.4s;
+// }
+// .btn--white::after {
+//     background-color: $color-white;
+// }
+
+// .btn:hover::after {
+//     transform: scaleX(1.4) scaleY(1.6);
+//     opacity: 0;
+// }
+
+// .btn--animated {
+//     animation: moveInBottom .5s ease-out .75s;
+//     animation-fill-mode: backwards;
+// }
