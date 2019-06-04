@@ -1,0 +1,68 @@
+.btn {
+
+    &:link, &:visited {
+        text-decoration: none;
+        text-transform: uppercase;
+        /* padding: 15px 40px; */
+        padding: 1.5rem 4rem;
+        display: inline-block;
+    
+        border-radius: 10rem;
+    
+        /* Transition should be in initial state before animation happens on :hover or any pseudo classes */
+        transition: all .2s;
+    
+        font-size: 1.6rem;
+    
+        position: relative;
+    }
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    /* Active triggers when button is pressed by user */
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        }    
+    }
+    
+    /* we need the ::after pseudo class to replicate cool effects */
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+    
+        /* We to put this the after pseudo css style to go behind. For absolute positioning, there has to be a reference point where the element should sit. So the parent element where this pseudo-element sits should have a `relative` positioning. */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* This puts it behind the button */
+        z-index: -1;
+    
+        transition: all 0.4s;
+    }
+    
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards;
+    }
+
+}

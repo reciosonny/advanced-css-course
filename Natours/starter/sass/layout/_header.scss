@@ -1,0 +1,35 @@
+.header {
+    /* What this does is the height should be 95% of the viewport-height */
+    height: 95vh;
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+    // this nesting(&) operator basically just appends the classname. It's the same as: .header__logo-box
+    &__logo-box {
+        position: absolute;
+
+        /* top: 40px;
+        left: 40px;*/
+        top: 4rem;
+        left: 4rem;
+    }
+    &__logo {
+        /* height: 35px; */
+        height: 3.5rem;
+    }
+    /* we use this css styling to center the positioning of our div */
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    
+        text-align: center;
+    }
+}
