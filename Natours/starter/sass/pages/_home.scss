@@ -13,7 +13,14 @@
     transform: skewY(-7deg);
     margin-top: -10rem;
 
+    // This selects all direct child of section-features but excluding the children of that child.
     & > * {
         transform: skewY(7deg);
     }
+}
+
+.section-tours {
+    background-color: $color-grey-light-1;
+    padding: 25rem 0 50rem 0;
+    margin-top: -10rem;
 }
