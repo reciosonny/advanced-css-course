@@ -16,7 +16,7 @@
     
         position: relative;
     }
-    
+
     &:hover {
         transform: translateY(-3px);
         box-shadow: 0 1rem 2rem rgba($color-black,.2);
@@ -41,6 +41,15 @@
             background-color: $color-white;
         }    
     }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }    
+    }
     
     /* we need the ::after pseudo class to replicate cool effects */
     &::after {
@@ -49,7 +58,7 @@
         height: 100%;
         width: 100%;
         border-radius: 10rem;
-    
+
         /* We to put this the after pseudo css style to go behind. For absolute positioning, there has to be a reference point where the element should sit. So the parent element where this pseudo-element sits should have a `relative` positioning. */
         position: absolute;
         top: 0;
